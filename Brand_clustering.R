@@ -4,7 +4,7 @@ library(dplyr)
 library(Rtsne) # for t-SNE plot
 library(reshape2)
 library(cluster) # for gower similarity and pam
-directory =  '/home/sarika/BankDetails/rewards/'
+directory =  '<Enter the directory name>'
 df = read.csv( paste(directory ,'brand_features/csv/brandFeatures.csv',sep = '/'),sep= ',')
 df$SectorID = as.factor(df$SectorID)
 df$BrandID = as.factor(df$BrandID)
@@ -14,18 +14,6 @@ dim(df)
 summary(df)
 drops= c("SectorID")
 df = df[ , !(names(df) %in% drops)]
-#scaled.dat <- scale(df[2:56])
-#df_scaled <- scaled.dat
-#head(df_scaled)
-# Running kmeans 
-#tot.wss <- 0
-#for (i in 1:100) {
-#  tot.wss[i] <- kmeans(df_scaled,centers=i)$tot.withinss
-#}
-#plot(1:100, tot.wss, 
-#     type="b", 
-#     xlab="Number of Clusters",
-#     ylab="Total within groups sum of squares") 
 
 #Calculating distance for mixed types, Gower Distance
 gower_dist <- daisy(df[, -1],metric = "gower")
